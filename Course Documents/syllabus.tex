@@ -1,0 +1,147 @@
+%%% Template originaly created by Karol Kozioł (mail@karol-koziol.net) and modified for ShareLaTeX use
+
+\documentclass[11pt]{article}
+\usepackage{nth}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{tabto}
+\usepackage{tgtermes}
+\usepackage{natbib}
+\bibpunct{(}{)}{;}{a}{}{,}
+\usepackage[
+pdftitle={Math Assignment}, 
+pdfauthor={Joe Doe, Some University},
+colorlinks=true,linkcolor=blue,urlcolor=blue,citecolor=blue,bookmarks=true,
+bookmarksopenlevel=2]{hyperref}
+\usepackage{amsmath,amssymb,amsthm,textcomp}
+\usepackage{enumerate}
+\usepackage{float}
+\usepackage{enumitem}
+\usepackage{multicol}
+\usepackage{hyperref}
+\usepackage{tikz}
+\usepackage[amssymb]{SIunits}
+\usepackage{tabularx}
+\usepackage{ragged2e}
+\newcolumntype{Y}{ >{\RaggedRight\arraybackslash}X}
+\usepackage{geometry}
+\geometry{total={8.5in,11in},
+left=1in,right=1in,%
+bindingoffset=0mm, top=1in,bottom=1in}
+
+\linespread{1.1}
+\setlength{\parskip}{1em}
+\setlength{\parindent}{0pt}
+\newcommand{\linia}{\rule{\linewidth}{0.5pt}}
+% custom theorems if needed
+\newtheoremstyle{mytheor}
+    {1ex}{1ex}{\normalfont}{0pt}{\scshape}{.}{1ex}
+    {{\thmname{#1 }}{\thmnumber{#2}}{\thmnote{ (#3)}}}
+
+\theoremstyle{mytheor}
+\newtheorem{defi}{Definition}
+\setlist[itemize]{noitemsep, topsep=0pt}
+% my own titles
+\makeatletter
+\renewcommand{\maketitle}{
+\begin{center}
+\vspace{2ex}
+{\huge \textsc{\@title}}
+\vspace{1ex}
+\\
+\linia\\
+ME EN 7710 \hfill Spring 2017
+\vspace{4ex}
+\end{center}
+}
+\makeatother
+%%%
+
+% custom footers and headers
+\usepackage{fancyhdr,lastpage}
+\pagestyle{fancy}
+\lhead{}
+\chead{}
+\rhead{}
+%\lfoot{Assignment \textnumero{} 5}
+\cfoot{}
+\rfoot{Page \thepage~/~\pageref*{LastPage}}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+%
+
+%%%----------%%%----------%%%----------%%%----------%%%
+
+\begin{document}
+
+\title{Environmental Fluid Dynamics}
+
+\maketitle
+
+
+\begin{table}[H]
+  \begin{tabularx}{\textwidth}{l Y}
+  \textbf{Instructor} & Jeremy A. Gibbs, Ph.D. \newline Email: jeremy.gibbs@utah.edu\newline Office: MEK 2566 (hours by appointment) \\\\
+  \textbf{Lecture} & WEB 2470, Tues and Thurs, 10:45a-12:05p\\\\
+  \textbf{Credit} & 3 hours\\\\
+  \textbf{Website} & Canvas\newline\href{http://gibbs.science/efd}{http://gibbs.science/efd}\\\\
+  \textbf{Text} & \emph{An Introduction to Boundary Layer Meteorology}\newline R.B. Stull (Kluwer, 1988), 670pp.\\\\
+  \textbf{Recommended Texts} & \emph{Introduction to Micrometeorology, \nth{2} edition}\newline S.P. Arya (Academic Press, 2001), 420 pp.\newline\vspace{10pt}\emph{The Atmospheric Boundary Layer}\newline J. R. Garratt (Cambridge University Press, 1992), 316 pp.\newline\vspace{10pt}\emph{Atmospheric Boundary Layer Flows}\newline J.C. Kaimal and J.J. Finnigan (Oxford University Press, 1994), 289 pp.\newline\vspace{10pt}\emph{Turbulence in the Atmosphere}\newline J.C. Wyngaard (Cambridge University Press, 2010), 393 pp.\newline\vspace{10pt}\emph{Boundary Layer Climates, \nth{2} edition}\newline T.R. Oke (Routledge, 1987), 435 pp.\newline\vspace{10pt}\emph{Handbook of Micrometeorology}\newline X. Lee, W. Massman, and B. Law (Kluwer, 2004), 250 pp.\\\\
+  \textbf{Prerequisites} & ME EN 3700 Undergraduate Fluid Mechanics (or equivalent) and ME EN 6700 Intermediate Fluid Dynamics or Instructor consent\\\\
+  \textbf{Grading} & Homework \tabto*{75pt} 20\%\newline Midterm Exam \tabto*{75pt} 25\%\newline Project \#1 \tabto*{75pt} 20\% \newline Final Project \tabto*{75pt} 35\% 
+\end{tabularx}
+\end{table}
+
+\section*{Course Description}
+An introduction to Environmental Fluid Dynamics focusing primarily on micrometeorological processes occurring in the atmospheric boundary layer (the lower 1-3 km of the troposphere). Since this is the part of the atmosphere that humans are directly in contact with, it is of great importance to both engineers and atmospheric scientists. For example, the small-scale motions responsible for pollution dispersion are related to surface fluxes of heat and momentum. The class will mostly focus on the micrometeorological processes in the atmospheric boundary layer in both rural and urban settings. The content will include turbulent flow processes in urban areas.
+
+\section*{Scope of the Course}
+The lecture material will cover much of the material in the textbook, however significant supplemental journal articles will also be used. The basic transport equations for mass, momentum and energy will be developed and will include rotation and stratification effects. 
+
+\section*{Course Outline}
+\begin{itemize}
+\item \textit{Introduction}
+\begin{itemize}
+	\item The atmospheric boundary layer – basic definitions and concepts, scales of motion, diurnal cycles, introduction to rotation and stratification
+	\item Equilibrium and departures from it
+	\item Atmospheric thermodynamics - potential temperature, virtual potential temperature, buoyancy frequency, potential energy
+\end{itemize}
+\item \textit{Energy Balances} – radiation characteristics, near surface exchanges (fluxes), energy budget near surface, radiation budget near surface
+\item \textit{Basic Equations} - rotation, stratification, boundary layer simplifications
+\item \textit{Atmospheric Surface Layer Scaling} – Monin-Obukhov similarity theory
+\begin{itemize}
+	\item Neutral, convective, and stable boundary layers
+\end{itemize}
+\item \textit{Atmospheric Boundary Layer Turbulence} – introduction to the turbulence in the environment, the critical effects of buoyancy on turbulence, turbulent entrainment, stability effects
+\begin{itemize}
+	\item Measuring techniques – introduction to various measuring techniques including sonic anemometry, balloon borne measurements, and remote sensing techniques
+	\item Analysis of turbulence datasets and application to a real world field experiment
+\end{itemize}
+\item \textit{Nonhomogeneous Boundary Layers} – vegetative canopies, urban fluid mechanics
+\begin{itemize}
+	\item Surface inhomogeneities (roughness effects - complex terrain, urban), terrain-induced flows
+	\item Atmospheric dispersion concepts and models (ranging from simple Gaussian plume to Lagrangian dispersion models)
+	\item Urban heat island
+\end{itemize}
+\end{itemize}
+
+\section*{Homework}
+Periodic homework assignments will be given during class and then posted on the web site and Canvas.  Homework will be collected in class and via Canvas on the due date. Late homework will generally not be accepted.
+
+\section*{Project \#1}
+The goal of this project is to obtain a working understanding of the Surface Energy Balance (SEB) for urban areas. You will model the urban SEB for a tower located in a suburban neighborhood in the Salt Lake Valley (Murray, UT) using the LUMPS (Local-scale Urban Meteorological Parameterization Scheme) model. At the end of the project you will have a working simulation tool.
+
+\section*{Final Project}
+You will investigate various aspects of turbulence by using data from recent field experiments. The purpose of this project is to understand the physics of turbulent flow occurring at the measurement site. The project will consist of two parts: a written report and an oral presentation. You may work in groups of 2 or 3.
+
+\section*{Computer Skills}
+All students are expected to have basic computing skills and knowledge of a programming language (FORTRAN, C, C++, Python, etc) or scientific computing software package (Maple, Matlab, EES, etc)
+
+\section*{Useful Information}
+\href{http://regulations.utah.edu/academics/6-100.php}{University of Utah Accommodations Policy (III.Q})\\\\
+\href{http://regulations.utah.edu/academics/6-400.php}{University of Utah Student Code of Conduct}\\\\
+\href{http://www.coe.utah.edu/wp-content/uploads/pdf/faculty/semester_guidelines.pdf}{College of Engineering Guidelines}\\\\
+\href{https://mech.utah.edu/files/2016/06/Grad-Handbook-AY-2015-20161.pdf}{Department Of Mechanical Engineering Graduate Advising Guide}
+\end{document}

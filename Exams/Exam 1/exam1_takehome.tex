@@ -1,0 +1,118 @@
+%%% Template originaly created by Karol Kozioł (mail@karol-koziol.net) and modified for ShareLaTeX use
+
+\documentclass[11pt]{article}
+\usepackage{esvect}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{float}
+\usepackage{tabto}
+\usepackage{bm}
+\usepackage{tgtermes}
+\usepackage{natbib}
+%\usepackage[subnum]{cases}
+\usepackage[super]{nth}
+\bibpunct{(}{)}{;}{a}{}{,}
+\usepackage{amsmath,amssymb}
+\usepackage{enumerate}
+\usepackage{multicol}
+\usepackage{tikz}
+\usepackage[amssymb]{SIunits}
+\usepackage{rotating}
+\usepackage{enumitem}
+\usepackage{geometry}
+\geometry{total={8.5in,11in},
+left=1in,right=1in,%
+bindingoffset=0mm, top=1in,bottom=1in}
+\usepackage[super]{nth}
+\usepackage[
+pdftitle={EFD: Exam 1, take-home}, 
+pdfauthor={Jeremy Gibbs, University of Utah},
+colorlinks=true,linkcolor=blue,urlcolor=blue,citecolor=blue,bookmarks=true,
+bookmarksopenlevel=2]{hyperref}
+
+\linespread{1.1}
+\setlength{\parskip}{1em}
+\setlength{\parindent}{0pt}
+\newcommand{\linia}{\rule{\linewidth}{0.5pt}}
+\makeatletter
+\renewcommand{\maketitle}{
+\begin{center}
+\vspace{2ex}
+{\huge \textsc{\@title}}
+\vspace{1ex}
+\\
+\linia\\
+ME EN 7710 \hfill Exam \#1 \hfill Take-Home Portion
+\vspace{4ex}
+\end{center}
+}
+\makeatother
+%%%
+
+% custom footers and headers
+\usepackage{fancyhdr,lastpage}
+\pagestyle{fancy}
+\lhead{}
+\chead{}
+\rhead{}
+%\lfoot{Assignment \textnumero{} 5}
+\cfoot{}
+\rfoot{Page \thepage~/~\pageref*{LastPage}}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+%
+
+%%%----------%%%----------%%%----------%%%----------%%%
+
+\begin{document}
+
+\title{Environmental Fluid Dynamics}
+
+\maketitle
+
+%-- Question 1 --%
+\paragraph{1.) [30 points] Turbulence Kinetic Energy}
+\begin{enumerate}[label=\alph*.)]
+	
+\item ~[18 points] Start with the provided turbulent momentum flux equation and derive the balance equation for turbulence kinetic energy (0.5$\overline{u_i^\prime u_i^\prime}$). Be sure to assume incompressibility.
+
+\begin{align*}
+\frac{\partial (\overline{u_k^\prime u_i^\prime})}{\partial t} + \overline u_j \frac{\partial (\overline{u_k^\prime u_i^\prime})}{\partial x_j} &= -\left[\overline{u_j^\prime u_i^\prime}\frac{\partial \overline u_k}{\partial x_j} + \overline{u_k^\prime u_j^\prime}\frac{\partial \overline u_i}{\partial x_j}\right] - \frac{\partial (\overline{u_k^\prime u_j^\prime u_i^\prime})}{\partial x_j} \\&\hphantom{=\ }+ \overline{u_k^\prime b^\prime}\delta_{i3} + \overline{u_i^\prime b^\prime}\delta_{k3}\\&\hphantom{=\ }-\left[ \frac{\partial(\overline{u_k^\prime \Pi^\prime})}{\partial x_i} + \frac{\partial(\overline{u_i^\prime \Pi^\prime})}{\partial x_k}- \overline{\Pi^\prime \left(\frac{\partial u_k^\prime}{\partial x_i} + \frac{\partial u_i^\prime}{\partial x_k}\right)}\right] +\nu \frac{\partial^2 (\overline{u_k^\prime u_i^\prime})}{\partial x_j^2} - 2\nu \overline{\frac{\partial u_k^\prime}{\partial x_j}\frac{\partial u_i^\prime}{\partial x_j}}
+\end{align*}
+
+\item ~[6 points] Identify the meaning of each of the terms in your final equation.
+\item Simplify your turbulence kinetic energy equation for the following cases:
+	\begin{itemize}
+		\item ~[2 points] Horizontally homogeneous + no subsidence ($\overline{w}=0$)
+		\item ~[2 points] Horizontally homogeneous + steady state
+		\item ~[2 points] Horizontally homogeneous + steady state + no subsidence + neutral stability
+	\end{itemize}
+\end{enumerate}
+
+%-- Question 2 --%
+\vspace{-20pt}
+\paragraph{2.) [20 points] Radiation}
+\begin{enumerate}[label=\alph*.)]
+\item ~[10 points] Calculate the total radiative flux for a black body surface at a temperature of $302\ \kelvin$, emitting radiation over the following wavelengths: $5\ \micro\metre$ to $40\ \micro\metre$. Feel free to integrate numerically. What type of radiation is this considered?
+\item ~[10 points] Calculate the wavelength of maximum radiant energy.
+\end{enumerate}
+
+%-- Question 3 --%
+\paragraph{3.) [20 points] Heat Budget}
+\begin{enumerate}[label=\alph*.)]
+\item[] In the afternoon, the incoming short wave radiation was measured at $50\ \metre$ above ground to be $750\ \watt\ \metre\rpsquared$. The layer cools at a rate of $dT/dt = 0.02\celsius/\text{day}$. Calculate the latent and sensible heat flux for the following environments (assume that the net longwave radiation is very small and that the flux into the submedium is negligible):
+\item ~[10 points] a desert surface (albedo = 0.3, Bowen Ratio = 10)
+\item ~[10 points] an irrigated crop surface (albedo=0.18, Bowen Ratio = 0.2)
+\end{enumerate}
+ 
+%-- Question 4 --%
+\paragraph{4.) [30 points] Sensible, Latent, and Buoyancy Fluxes}
+\begin{enumerate}[label=\alph*.)]
+\item ~[20 points] The turbulent buoyancy flux $\overline{w^\prime b^\prime}$ can be defined as $\frac{g}{\overline{\theta_v}} \overline{w^\prime \theta_v^\prime}$. Consider just the $\overline{w^\prime \theta_v^\prime}$ portion of the equation. Using the definition of virtual temperature, Reynolds averaging, appropriate assumptions, and the relationships derived in class, derive an expression for $\overline{w^\prime \theta_v^\prime}$ in terms of the kinematic sensible heatflux ($\overline{w^\prime T^\prime}$) and the kinematic latent heat flux ($\overline{w^\prime q^\prime}$). Pleaseshow all work and clearly identify assumptions.
+
+\item ~[10 points] Using your relationship from part (a), please explain the effect of moisture on the buoyancy flux.
+\end{enumerate}
+
+\end{document}

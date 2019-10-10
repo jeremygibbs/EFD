@@ -1,0 +1,289 @@
+\include{lecture_header}
+\title{Environmental Fluid Dynamics: Lecture 17}
+% colors
+\newcommand{\ihat}{\boldsymbol{\hat{\imath}}}
+\newcommand{\jhat}{\boldsymbol{\hat{\jmath}}}
+\newcommand{\khat}{\boldsymbol{\hat{k}}}
+\definecolor{colororange}{HTML}{E65100} % orange
+\definecolor{colordgray}{HTML}{795548} % dark gray for note
+\definecolor{colorhgray}{HTML}{212121} % heavy dark gray for normal text
+\definecolor{colorgreen}{HTML}{009688} % green
+\definecolor{colorwhite}{HTML}{FFFFFF} % background white
+\definecolor{colorlgray}{HTML}{F5F3EE} % background light gray
+\definecolor{colorblue}{HTML}{0277BB} % blue
+\definecolor{colorred}{HTML}{CC0000} % red
+\newcommand{\fontsizeone}{1.9em}
+\setbeamertemplate{caption}{\raggedright\insertcaption\par}
+\newcommand{\framecard}[2][colorgreen]{
+  {\setbeamercolor{background canvas}{bg=#1}
+    \begin{frame}[plain]
+    \vfill
+    \begin{center}
+     {#2}
+    \end{center}
+    \vfill
+    \end{frame}
+  }
+}
+\settowidth{\leftmargini}{\usebeamertemplate{itemize item}}
+\addtolength{\leftmargini}{\labelsep}
+\usepackage{empheq}
+\begin{document}
+
+%----------------------------------------------------------------------------------------
+%	TITLE & TOC SLIDES
+%----------------------------------------------------------------------------------------
+
+\begin{frame} 
+  \titlepage
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{Overview}
+\tableofcontents
+\end{frame}
+
+%------------------------------------------------
+\section{Turbulent Momentum Flux Balance}       %
+%------------------------------------------------
+\framecard[colorred]{{\color{white}\Huge Turbulent Momentum\newline\newline Flux Balance}}
+%------------------------------------------------
+\begin{frame}{Turbulent Momentum Flux Balance}
+\begin{itemize}
+  	\item We will derive the turbulent momentum flux balance equation.
+  	\item We write the equation in terms of buoyancy $b$ (Lecture 11):
+  	$$b = \beta \theta_v^\prime$$
+  	where $\beta = g/\theta_{0}$ is the buoyancy parameter, $g$ is gravity, and $\theta_{0}$ is a constant reference potential temperature (say $300\ \kelvin$).
+  	\item We also write the equation in terms of normalized pressure $\Pi$
+  	$$\Pi = \frac{p-p_0}{\rho_0} = \frac{p^\prime}{\rho_0}$$
+  	where $p_0$ is the reference (or base-state) pressure and $\rho_0$ is the reference density.
+  \end{itemize}
+\end{frame}
+%------------------------------------------------
+\begin{frame}{Turbulent Momentum Flux Balance}
+\begin{itemize}
+  	\item We start with the momentum balance equation written in indicial notation and neglect rotational effects
+  	\begin{equation}
+  	\label{eq1}
+  	\frac{\partial u_i}{\partial t} + \frac{\partial (u_j u_i)}{\partial x_j} = -\frac{\partial \Pi}{\partial x_i} + b\delta_{i3} + \nu \frac{\partial^2 u_i}{\partial x_j^2}
+  	\end{equation}
+  	\item Now we decompose into mean and perturbation parts
+  	\begin{align*}
+  	\frac{\partial (\overline{u_i} + u_i^\prime)}{\partial t} + \frac{\partial (\overline{u_j} + u_j^\prime)(\overline{u_i} + u_i^\prime)}{\partial x_j} = &-\frac{\partial (\overline{\Pi} + \Pi^\prime)}{\partial x_i} + (\overline{b} + b^\prime)\delta_{i3} \\&+ \nu \frac{\partial^2 (\overline{u_i} + u_i^\prime)}{\partial x_j^2}
+  	\end{align*}
+  \end{itemize}
+\end{frame}
+%------------------------------------------------
+\begin{frame}{Turbulent Momentum Flux Balance}
+\begin{itemize}
+  	\item Next, we can simplify and then apply Reynolds averaging
+  	\begin{align*}
+  	&\frac{\partial \overline{\overline{u_i}}}{\partial t} + \frac{\partial \overline{u_i^\prime}}{\partial t} + \frac{\partial \overline{\overline{u_j}\;\overline{u_i}}}{\partial x_j} + \frac{\partial \overline{\overline{u_j}u_i^\prime}}{\partial x_j} + \frac{\partial \overline{u_j^\prime \overline{u_i}}}{\partial x_j} + \frac{\partial \overline{u_j^\prime u_i^\prime}}{\partial x_j}\\
+  	=-&\frac{\partial \overline{\overline{\Pi}}}{\partial x_i} -\frac{\partial \overline{\Pi^\prime}}{\partial x_i} + \overline{\overline{b}}\delta_{i3} + \overline{b^\prime}\delta_{i3} + \nu\frac{\partial^2 \overline{\overline{u_i}}}{\partial x_j^2} + \nu\frac{\partial^2 \overline{u_i^\prime}}{\partial x_j^2}
+  	\end{align*}
+  	\item Applying the rules of averaging yields
+  	\begin{equation}
+  	\label{eq2}
+  		\frac{\partial \overline{u_i}}{\partial t} + \frac{\partial \overline{u_j}\;\overline{u_i}}{\partial x_j} + \frac{\partial \overline{u_j^\prime  u_i^\prime}}{\partial x_j} = -\frac{\partial \overline{\Pi}}{\partial x_i} + \overline{b}\delta_{i3} +  \nu\frac{\partial^2 \overline{u_i}}{\partial x_j^2}
+  	\end{equation}
+  \end{itemize}
+\end{frame}
+%------------------------------------------------
+\begin{frame}{Turbulent Momentum Flux Balance}
+\begin{itemize}
+  	\item Subtract Eq.~(\ref{eq2}) from Eq.~(\ref{eq1}) to obtain an expression for $u_i^\prime$
+  	\begin{align*}
+  	\frac{\partial (u_i - \overline{u_i})}{\partial t} + \frac{\partial (u_j u_i - \overline{u_j}\; \overline{u_i} - \overline{u_j^\prime  u_i^\prime})}{\partial x_j} = &-\frac{\partial (\Pi - \overline{\Pi})}{\partial x_i} + (b-\overline{b})\delta_{i3} \\&+ \nu \frac{\partial^2 (u_i - \overline{u_i})}{\partial x_j^2}
+  	\end{align*}
+  	\item Expanding terms and simplifying yields
+  	\begin{align*}
+  	\frac{\partial u_i^\prime}{\partial t} + \frac{\partial}{\partial x_j}\left[ (\overline{u_j} + u_j^\prime)(\overline{u_i} + u_i^\prime) - \overline{u_j}\; \overline{u_i} - \overline{u_j^\prime u_i^\prime}\right] = &-\frac{\partial \Pi^\prime}{\partial x_i} + b^\prime\delta_{i3} \\&+ \nu \frac{\partial^2 u_i^\prime}{\partial x_j^2}
+  	\end{align*}
+  \end{itemize}
+\end{frame}
+%------------------------------------------------
+\begin{frame}{Turbulent Momentum Flux Balance}
+\begin{itemize}
+  	\item Final rearrangement leads to the following expression for $u_i^\prime$
+  	\small
+  	\begin{empheq}[box=\widefbox]{align}
+  	\label{eq3}
+  		\frac{\partial u_i^\prime}{\partial t} + \frac{\partial}{\partial x_j}\left[ u_j^\prime \overline{u_i} + \overline{u_j} u_i^\prime + u_j^\prime u_i^\prime - \overline{u_j^\prime u_i^\prime}\right] = &-\frac{\partial \Pi^\prime}{\partial x_i} + b^\prime\delta_{i3} \\&+ \nu \frac{\partial^2 u_i^\prime}{\partial x_j^2}\nonumber
+  	\end{empheq}
+  	\item Now we want to derive an expression in flux form
+  \end{itemize}
+\end{frame}
+%------------------------------------------------
+\begin{frame}{Turbulent Momentum Flux Balance}
+\begin{itemize}
+  	\item First, multiply Eq.~(\ref{eq3}) by $u_k^\prime$
+  	\small
+  	\begin{align}
+  	\label{eq4}
+  	& u_k^\prime\frac{\partial u_i^\prime}{\partial t} + u_k^\prime\frac{\partial u_j^\prime \overline{u_i}}{\partial x_j} + u_k^\prime\frac{\partial \overline{u_j} u_i^\prime}{\partial x_j} + u_k^\prime\frac{\partial u_j^\prime  u_i^\prime}{\partial x_j} - u_k^\prime\frac{\partial \overline{u_j^\prime u_i^\prime}}{\partial x_j}\\ 
+  	= - & u_k^\prime\frac{\partial \Pi^\prime}{\partial x_i} + u_k^\prime b^\prime\delta_{i3} + \nu u_k^\prime \frac{\partial^2 u_i^\prime}{\partial x_j^2}\nonumber	
+  	\end{align}
+	\item Now, interchange $i$ and $k$
+	\small
+  	\begin{align}
+  	\label{eq5}
+  	& u_i^\prime\frac{\partial u_k^\prime}{\partial t} + u_i^\prime\frac{\partial u_j^\prime \overline{u_k}}{\partial x_j} + u_i^\prime\frac{\partial \overline{u_j} u_k^\prime}{\partial x_j} + u_i^\prime\frac{\partial u_j^\prime  u_k^\prime}{\partial x_j} - u_i^\prime\frac{\partial \overline{u_j^\prime  u_k^\prime}}{\partial x_j}\\ 
+  	= - & u_i^\prime\frac{\partial \Pi^\prime}{\partial x_k} + u_i^\prime b^\prime\delta_{k3} + \nu u_i^\prime \frac{\partial^2 u_k^\prime}{\partial x_j^2}\nonumber	
+  	\end{align}
+  \end{itemize}
+\end{frame}
+
+%------------------------------------------------
+\begin{frame}{Turbulent Momentum Flux Balance}
+\begin{itemize}
+  	\item Next, add Eqs.~(\ref{eq4}) and (\ref{eq5})
+  	\small
+  	\begin{align*}
+  	& u_k^\prime\frac{\partial u_i^\prime}{\partial t} + u_i^\prime\frac{\partial u_k^\prime}{\partial t} + u_k^\prime\frac{\partial u_j^\prime \overline{u_i}}{\partial x_j} + u_i^\prime\frac{\partial u_j^\prime \overline{u_k}}{\partial x_j} + u_k^\prime\frac{\partial \overline{u_j} u_i^\prime}{\partial x_j} + u_i^\prime\frac{\partial \overline{u_j} u_k^\prime}{\partial x_j} \\
+  	+ &u_k^\prime\frac{\partial u_j^\prime  u_i^\prime}{\partial x_j} + u_i^\prime\frac{\partial u_j^\prime  u_k^\prime}{\partial x_j} - u_k^\prime\frac{\partial \overline{u_j^\prime  u_i^\prime}}{\partial x_j} - u_i^\prime\frac{\partial \overline{u_j^\prime  u_k^\prime}}{\partial x_j}\\ 
+  	= - & u_k^\prime\frac{\partial \Pi^\prime}{\partial x_i} - u_i^\prime\frac{\partial \Pi^\prime}{\partial x_k} + u_k^\prime b^\prime\delta_{i3} + u_i^\prime b^\prime\delta_{k3} + \nu u_k^\prime \frac{\partial^2 u_i^\prime}{\partial x_j^2} + \nu u_i^\prime \frac{\partial^2 u_k^\prime}{\partial x_j^2}	
+  	\end{align*}
+  	\item Use product rule and incompressibility condition ($\partial u_j/\partial x_j = 0$)
+  	\begin{align*}
+  	&	\frac{\partial u_k^\prime u_i^\prime	}{\partial t} + \overline{u_j} \frac{\partial u_k^\prime u_i^\prime}{\partial x_j} + u_k^\prime u_j^\prime \frac{\partial \overline{u_i}}{\partial x_j} + u_j^\prime u_i^\prime \frac{\partial \overline{u_k}}{\partial x_j} + \frac{\partial u_k^\prime u_j^\prime u_i^\prime}{\partial x_j} \\- u_k^\prime &\frac{\partial \overline{u_j^\prime u_i^\prime}}{\partial x_j} - u_i^\prime \frac{\partial \overline{u_k^\prime u_j^\prime}}{\partial x_j} = \\-u_k^\prime&\frac{\partial \Pi^\prime}{\partial x_i} - u_i^\prime\frac{\partial \Pi^\prime}{\partial x_k} + u_k^\prime b^\prime\delta_{i3} + u_i^\prime b^\prime\delta_{k3} + \nu u_k^\prime \frac{\partial^2 u_i^\prime}{\partial x_j^2} + \nu u_i^\prime \frac{\partial^2 u_k^\prime}{\partial x_j^2}
+  	\end{align*}
+  \end{itemize}
+\end{frame}
+%------------------------------------------------
+\begin{frame}{Turbulent Momentum Flux Balance}
+\begin{itemize}
+  	\item Finally, apply Reynolds averaging and use the product rule to expand and rewrite the pressure and viscous terms.
+  	\small
+  	\begin{empheq}[box=\widefbox]{align}
+  	\label{eq6}
+\underbrace{\vphantom{\overline u_j \frac{\partial (\overline{u_k^\prime u_i^\prime})}{\partial x_j}}\frac{\partial (\overline{u_k^\prime u_i^\prime})}{\partial t}}_{1} &= - \underbrace{\overline u_j \frac{\partial (\overline{u_k^\prime u_i^\prime})}{\partial x_j}}_{2} -\underbrace{ \left[\overline{u_j^\prime u_i^\prime}\frac{\partial \overline u_k}{\partial x_j} + \overline{u_k^\prime u_j^\prime}\frac{\partial \overline u_i}{\partial x_j}\right]}_{3} - \underbrace{\frac{\partial (\overline{u_k^\prime u_j^\prime u_i^\prime})}{\partial x_j}}_{4} \\&\hphantom{=\ }+ \underbrace{\overline{u_k^\prime b^\prime}\delta_{i3} + \overline{u_i^\prime b^\prime}\delta_{k3}}_{5}\nonumber\\&\hphantom{=\ }-\underbrace{\left[ \frac{\partial(\overline{u_k^\prime \Pi^\prime})}{\partial x_i} + \frac{\partial(\overline{u_i^\prime \Pi^\prime})}{\partial x_k}\right.}_{6} - \underbrace{\left.\overline{\Pi^\prime \left(\frac{\partial u_k^\prime}{\partial x_i} + \frac{\partial u_i^\prime}{\partial x_k}\right)}\right]}_{7}\nonumber \\&\hphantom{=\ }+\underbrace{\nu \frac{\partial^2 (\overline{u_k^\prime u_i^\prime})}{\partial x_j^2}}_{8} - \underbrace{2\nu \overline{\frac{\partial u_k^\prime}{\partial x_j}\frac{\partial u_i^\prime}{\partial x_j}}}_{9}\nonumber
+\end{empheq}
+  \end{itemize}
+\end{frame}
+%------------------------------------------------
+\begin{frame}{Turbulent Momentum Flux Balance}
+\textbf{\underline{Terms in Eq.~(\ref{eq6})}}
+\begin{enumerate}
+	\item Storage of momentum flux
+	\item Advection of momentum flux by the mean wind
+	\item Production of momentum flux by the mean wind shear
+	\item Transport of momentum flux by turbulence (turbulent diffusion)
+	\item Production/destruction of momentum flux by buoyancy
+	\item Transport of momentum flux by pressure (pressure diffusion)
+	\item Redistribution of momentum flux by pressure
+	\item Molecular diffusion of momentum flux
+	\item Viscous dissipation of momentum flux
+\end{enumerate}
+\end{frame}
+%------------------------------------------------
+\section{Turbulent Buoyancy Flux Balance}       %
+%------------------------------------------------
+\framecard[colorred]{{\color{white}\Huge Turbulent Buoyancy\newline\newline Flux Balance}}
+%------------------------------------------------
+\begin{frame}{Turbulent Buoyancy Flux Balance}
+\begin{itemize}
+  	\item We will derive the turbulent buoyancy flux balance equation.
+  	\item We start with the momentum balance equation written in indicial notation and neglect rotational effects
+  	\begin{equation}
+  		\label{eq7}
+  		\frac{\partial b}{\partial t} + \frac{\partial u_jb}{\partial x_j} = -N^2u_j \delta_{j3} + \nu_{h} \frac{\partial^2 b}{\partial x_j^2}
+  	\end{equation}
+  	\item Now we decompose into mean and perturbation parts
+  	\begin{align*}
+  		\frac{\partial (\overline{b} + b^\prime)}{\partial t} + \frac{\partial (\overline{u_j} + u_j^\prime) (\overline{b} + b^\prime)}{\partial x_j} = &-N^2(\overline{u_j} + u_j^\prime) \delta_{j3} \\&+ \nu_{h} \frac{\partial^2 (\overline{b} + b^\prime)}{\partial x_j^2}
+  	\end{align*}
+  \end{itemize}
+\end{frame}
+%------------------------------------------------
+\begin{frame}{Turbulent Buoyancy Flux Balance}
+\begin{itemize}
+  	\item Next, expand and then apply Reynolds averaging
+  	\begin{align*}
+  		&\frac{\partial \overline{\overline{b}}}{\partial t} + \frac{\partial \overline{b^\prime}}{\partial t} + \frac{\partial \overline{\overline{u_j}\; \overline{b}}}{\partial x_j} + \frac{\partial \overline{\overline{u_j} b^\prime}}{\partial x_j} + \frac{\partial \overline{u_j^\prime \overline{b}}}{\partial x_j} + \frac{\partial \overline{u_j^\prime b^\prime}}{\partial x_j}\\
+  		=-&N^2\overline{\overline{u_j}}\delta_{j3} - N^2\overline{u_j^\prime} \delta_{j3} + \nu_{h} \frac{\partial^2 \overline{\overline{b}}}{\partial x_j^2} + \frac{\partial^2 \overline{b^\prime}}{\partial x_j^2}
+  	\end{align*}
+  	\item Applying the rules of averaging yields
+  	\begin{equation}
+  	\label{eq8}
+  		\frac{\partial \overline{b}}{\partial t} + \frac{\partial \overline{u_j}\; \overline{b}}{\partial x_j} + \frac{\partial \overline{u_j^\prime b^\prime}}{\partial x_j} = -N^2\overline{u_j}\delta_{j3} + \nu_{h} \frac{\partial^2 \overline{b}}{\partial x_j^2}
+  	\end{equation}
+  \end{itemize}
+\end{frame}
+%------------------------------------------------
+\begin{frame}{Turbulent Buoyancy Flux Balance}
+\begin{itemize}
+  	\item Subtract Eq.~(\ref{eq8}) from Eq.~(\ref{eq7}) to obtain an expression for $b^\prime$
+  	\small
+  	\begin{align}
+  	\frac{\partial (b - \overline{b})}{\partial t} + \frac{\partial}{\partial x_j}\left[ u_j b - \overline{u_j}\overline{b} - \overline{u_j^\prime b^\prime}\right] &= -N^2(u_j - \overline{u_j})\delta_{j3} + \nu_h \frac{\partial^2 b^\prime}{\partial x_j^2}\nonumber\\
+  	\frac{\partial b^\prime}{\partial t} + \frac{\partial}{\partial x_j}\left[(\overline{u_j} - u_j^\prime)(\overline{b}+b^\prime) - \overline{u_j}\overline{b} - \overline{u_j^\prime b^\prime}\right] &= -N^2 u_j^\prime \delta_{j3} + \nu_h \frac{\partial^2 b^\prime}{\partial x_j^2}\nonumber\\
+  	\Aboxed{\frac{\partial b^\prime}{\partial t} + \frac{\partial}{\partial x_j}\left[\overline{u_j}b^\prime + u_j^\prime \overline{b} + u_j^\prime b^\prime - \overline{u_j^\prime b^\prime}\right] &= -N^2 u_j^\prime \delta_{j3} + \nu_h \frac{\partial^2 b^\prime}{\partial x_j^2}}
+  	\label{eq9}
+  	\end{align}
+  	\item Now we want to derive an expression in flux form
+  \end{itemize}
+\end{frame}
+%------------------------------------------------
+\begin{frame}{Turbulent Buoyancy Flux Balance}
+\begin{itemize}
+  	\item First, multiply Eq.~(\ref{eq3}) by $b^\prime$
+  	\small
+  	\begin{align}
+  	\label{eq10}
+  	& b^\prime\frac{\partial u_i^\prime}{\partial t} + b^\prime\frac{\partial}{\partial x_j}\left[u_j^\prime \overline{u_i} + \overline{u_j} u_i^\prime + u_j^\prime  u_i^\prime - \overline{u_j^\prime u_i^\prime}\right]\\ 
+  	= - & b^\prime\frac{\partial \Pi^\prime}{\partial x_i} +b^\prime b^\prime\delta_{i3} + \nu b^\prime \frac{\partial^2 u_i^\prime}{\partial x_j^2}\nonumber	
+  	\end{align}
+  	\item Next, multiply Eq.~(\ref{eq9}) by $u_i^\prime$
+  	\begin{align}
+  	\label{eq11}
+  	& u_i^\prime\frac{\partial b^\prime}{\partial t} + u_i^\prime\frac{\partial}{\partial x_j}\left[\overline{u_j}b^\prime + u_j^\prime \overline{b} + u_j^\prime b^\prime - \overline{u_j^\prime b^\prime}\right]\\ = -&N^2 u_j^\prime u_i^\prime \delta_{j3} + \nu_h u_i^\prime \frac{\partial^2 b^\prime}{\partial x_j^2}\nonumber
+  	\end{align}
+  \end{itemize}
+\end{frame}
+%------------------------------------------------
+\begin{frame}{Turbulent Buoyancy Flux Balance}
+\begin{itemize}
+  	\item Add Eqs.~(\ref{eq10}) by (\ref{eq11})
+  	\small
+  	\begin{align*}
+  	& b^\prime\frac{\partial u_i^\prime}{\partial t} + u_i^\prime\frac{\partial b^\prime}{\partial t} + b^\prime u_j^\prime \frac{\partial \overline{u_i}}{\partial x_j} + u_i^\prime \overline{u_j}\frac{\partial b^\prime}{\partial x_j} + b^\prime \overline{u_j}\frac{\partial u_i^\prime}{\partial x_j} \\+ &u_i^\prime u_j^\prime \frac{\partial \overline{b}}{\partial x_j} + b^\prime u_j^\prime \frac{\partial u_i^\prime}{\partial x_j} + u_i^\prime u_j^\prime \frac{\partial b^\prime}{\partial x_j} - b^\prime \frac{\partial \overline{u_j^\prime u_i^\prime}}{\partial x_j} - u_i^\prime \frac{\partial \overline{u_j^\prime b^\prime}}{\partial x_j}\\
+  	=-&b^\prime\frac{\partial \Pi^\prime}{\partial x_i} +b^\prime b^\prime\delta_{i3} -N^2 u_j^\prime u_i^\prime \delta_{j3} + \nu b^\prime \frac{\partial^2 u_i^\prime}{\partial x_j^2} + \nu_h u_i^\prime \frac{\partial^2 b^\prime}{\partial x_j^2} 
+  	\end{align*}
+  	\item Use product rule and incompressibility condition ($\partial u_j/\partial x_j = 0$)
+  	\begin{align*}
+  		\frac{\partial u_i^\prime b^\prime}{\partial t} + \overline{u_j}\frac{\partial u_i^\prime b^\prime}{\partial x_j} = &-\left(u_j^\prime b^\prime \frac{\partial \overline{u_i}}{\partial x_j} +  u_j^\prime u_i^\prime \frac{\partial \overline{b}}{\partial x_j}\right) - \frac{\partial u_j^\prime u_i^\prime b^\prime}{\partial x_j} \\ &+b^\prime \frac{\partial \overline{u_j^\prime u_i^\prime}}{\partial x_j} + u_i^\prime \frac{\partial \overline{u_j^\prime b^\prime}}{\partial x_j} - b^\prime\frac{\partial \Pi^\prime}{\partial x_i}\\ &+ b^\prime b^\prime \delta_{i3} -N^2 u_j^\prime u_i^\prime \delta_{j3} + \nu b^\prime \frac{\partial^2 u_i^\prime}{\partial x_j^2} + \nu_h u_i^\prime \frac{\partial^2 b^\prime}{\partial x_j^2}
+  	\end{align*}
+
+  \end{itemize}
+\end{frame}
+%------------------------------------------------
+\begin{frame}{Turbulent Buoyancy Flux Balance}
+\begin{itemize}
+  	\item Finally, apply Reynolds averaging and use the product rule to expand and rewrite the pressure and viscous terms.
+  	\small
+  	\begin{empheq}[box=\widefbox]{align}
+  	\label{eq12}
+\underbrace{\vphantom{\overline u_j\frac{\partial \overline{u_i^\prime b^\prime}}{\partial x_j}}\frac{\partial \overline{u_i^\prime b^\prime}}{\partial t}}_{1} &= - \underbrace{\overline u_j\frac{\partial \overline{u_i^\prime b^\prime}}{\partial x_j}}_{2} - \underbrace{\overline{u_j^\prime b^\prime}\frac{\partial \overline{u_i}}{\partial x_j} - \overline{u_j^\prime u_i^\prime}\left[\frac{\partial \overline{b}}{\partial x_j} + N^2\delta_{j3} \right]}_{3} \\&\hphantom{=\ }- \underbrace{\frac{\partial \overline{u_j^\prime u_i^\prime b^\prime}}{\partial x_j}}_{4} +\underbrace{\vphantom{\overline{\frac{\partial u_i^\prime}{\partial x_j}\frac{\partial b^\prime}{\partial x_j}}}\overline{b^\prime b^\prime}\delta_{i3}}_{5} - \underbrace{\left[\frac{\partial \overline{b^\prime \Pi^\prime}}{\partial x_i}\right.}_{6} - \underbrace{\left.\overline{\Pi^\prime \frac{\partial b^\prime}{\partial x_i}}\right]}_{7}\nonumber \\\hphantom{=\ }&+\underbrace{\nu\frac{\partial^2 \overline{u_i^\prime b^\prime}}{\partial x_j^2}}_{8} - \underbrace{2\nu\overline{\frac{\partial u_i^\prime}{\partial x_j}\frac{\partial b^\prime}{\partial x_j}}}_{9}\nonumber
+\end{empheq}
+  \end{itemize}
+\end{frame}
+%------------------------------------------------
+\begin{frame}{Turbulent Buoyancy Flux Balance}
+\textbf{\underline{Terms in Eq.~(\ref{eq12})}}
+\begin{enumerate}
+	\item Storage of buoyancy flux
+	\item Advection of buoyancy flux by the mean wind
+	\item Production of buoyancy flux by the mean wind and buoyancy shear + stratification
+	\item Transport of buoyancy flux by turbulence (turbulent diffusion)
+	\item Production/destruction of buoyancy flux by buoyancy
+	\item Transport of buoyancy flux by pressure (pressure diffusion)
+	\item Redistribution of buoyancy flux by pressure
+	\item Molecular diffusion of buoyancy flux
+	\item Viscous dissipation of buoyancy flux
+\end{enumerate}
+\end{frame}
+%------------------------------------------------
+\end{document}
+

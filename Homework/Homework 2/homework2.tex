@@ -1,0 +1,110 @@
+%%% Template originaly created by Karol Kozioł (mail@karol-koziol.net) and modified for ShareLaTeX use
+
+\documentclass[11pt]{article}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{float}
+\usepackage{tgtermes}
+\usepackage{natbib}
+%\usepackage[subnum]{cases}
+\usepackage[super]{nth}
+\bibpunct{(}{)}{;}{a}{}{,}
+\usepackage{amsmath,amssymb}
+\usepackage{enumerate}
+\usepackage{multicol}
+\usepackage{tikz}
+\usepackage[amssymb]{SIunits}
+\usepackage{rotating}
+\usepackage{enumitem}
+\usepackage{geometry}
+\geometry{total={8.5in,11in},
+left=1in,right=1in,%
+bindingoffset=0mm, top=1in,bottom=1in}
+\usepackage[super]{nth}
+\usepackage[
+pdftitle={EFD: Homework 1}, 
+pdfauthor={Jeremy Gibbs, University of Utah},
+colorlinks=true,linkcolor=blue,urlcolor=blue,citecolor=blue,bookmarks=true,
+bookmarksopenlevel=2]{hyperref}
+
+\linespread{1.1}
+\setlength{\parskip}{1em}
+\setlength{\parindent}{0pt}
+\newcommand{\linia}{\rule{\linewidth}{0.5pt}}
+
+\makeatletter
+\renewcommand{\maketitle}{
+\begin{center}
+\vspace{2ex}
+{\huge \textsc{\@title}}
+\vspace{1ex}
+\\
+\linia\\
+ME EN 7710 \hfill Homework \#2 \hfill Due: March \nth{24}
+\vspace{4ex}
+\end{center}
+}
+\makeatother
+%%%
+
+% custom footers and headers
+\usepackage{fancyhdr,lastpage}
+\pagestyle{fancy}
+\lhead{}
+\chead{}
+\rhead{}
+%\lfoot{Assignment \textnumero{} 5}
+\cfoot{}
+\rfoot{Page \thepage~/~\pageref*{LastPage}}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+%
+
+%%%----------%%%----------%%%----------%%%----------%%%
+
+\begin{document}
+
+\title{Environmental Fluid Dynamics}
+
+\maketitle
+
+%-- Question 1 --%
+\vspace{-20pt}
+\paragraph{1.) Boundary Layer Profiles}~\\\\
+Given the provided ballon data (\href{http://gibbs.science/efd/homework/balloon_data.txt}{http://gibbs.science/efd/homework/balloon\_data.txt}), perform the following:
+\begin{enumerate}[label=(\alph*)]
+	\item Plot vertical profiles of all the raw variables on a single page with clearly labeled axes. Note any interesting features.
+	\item Calculate and plot the (i) temperature, (ii) potential temperature, and (iii) virtual potential temperature. Compare and discuss the potential temperature and virtual potential temperatures. Why do they differ?
+	\item Compare the potential temperature calculations using the balloon-based pressure measurements with $\theta(z) \approxeq T(z)+ \Gamma z$. Calculate and plot the difference. What is the difference?
+\end{enumerate}
+ 
+%-- Question 2 --%
+\paragraph{2.) The Laminar Ekman Layer Above a Rigid Surface}~\\\\
+The simplified momentum equations:
+\begin{align*}
+-fv &= -\frac{1}{\rho}\frac{\partial p}{\partial x} + \nu\frac{\partial^2 u}{\partial z^2}\\
+fu &=  -\frac{1}{\rho}\frac{\partial p}{\partial y} + \nu\frac{\partial^2 v}{\partial z^2}
+\end{align*}
+can be further simplified by expressing pressure gradients in terms of geostrophic velocity components as:
+\begin{align}
+\label{ek1}
+-f(v-V_g) &= \nu\frac{\partial^2}{\partial z^2}(u-U_g)\\
+\label{ek2}
+f(u-U_g)  &= \nu\frac{\partial^2}{\partial z^2}(v-V_g)
+\end{align}
+\begin{enumerate}[label=(\alph*),topsep=-10pt]
+	\item Assuming $U_g$ and $V_g$ are height independent, solve Eqs.~(\ref{ek1}) and (\ref{ek2}) subject to the following boundary conditions:
+	\begin{itemize}
+		\item $u(z$=$0) = v(z$=$0) = 0$
+		\item $u(z\rightarrow \infty)=U_g$, $v(z\rightarrow \infty)=V_g$
+	\end{itemize}
+	For the final solution, orient the $x$-axis with the geostrophic wind vector (i.e., $U_g$ = $U$ and $V_g$ = $0$). The solutions should be in the form (where $a$ is the inverse Ekman depth):
+	$$u = U[ 1 - e^{-az} \cos(az)]\qquad v = Ge^{-az}\sin(az)$$
+	\item Plot your solution as a hodograph and as vertical profiles of $u$ and $v$.
+	\item Please explain the phenomena of Ekman pumping.
+\end{enumerate}
+
+\end{document}

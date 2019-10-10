@@ -1,0 +1,294 @@
+\include{lecture_header}
+\title{Environmental Fluid Dynamics: Lecture 13}
+% colors
+\newcommand{\ihat}{\boldsymbol{\hat{\imath}}}
+\newcommand{\jhat}{\boldsymbol{\hat{\jmath}}}
+\newcommand{\khat}{\boldsymbol{\hat{k}}}
+\definecolor{colororange}{HTML}{E65100} % orange
+\definecolor{colordgray}{HTML}{795548} % dark gray for note
+\definecolor{colorhgray}{HTML}{212121} % heavy dark gray for normal text
+\definecolor{colorgreen}{HTML}{009688} % green
+\definecolor{colorwhite}{HTML}{FFFFFF} % background white
+\definecolor{colorlgray}{HTML}{F5F3EE} % background light gray
+\definecolor{colorblue}{HTML}{0277BB} % blue
+\definecolor{colorred}{HTML}{CC0000} % red
+\newcommand{\fontsizeone}{1.9em}
+\usepackage{esvect}
+\setbeamertemplate{caption}{\raggedright\insertcaption\par}
+\newcommand{\framecard}[2][colorgreen]{
+  {\setbeamercolor{background canvas}{bg=#1}
+    \begin{frame}[plain]
+    \vfill
+    \begin{center}
+     {#2}
+    \end{center}
+    \vfill
+    \end{frame}
+  }
+}
+\begin{document}
+
+%----------------------------------------------------------------------------------------
+%	TITLE & TOC SLIDES
+%----------------------------------------------------------------------------------------
+
+\begin{frame} 
+  \titlepage
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{Overview}
+\tableofcontents
+\end{frame}
+
+%------------------------------------------------
+\section{Taylor-Proudman Theorem} %
+%------------------------------------------------
+\framecard[colorred]{{\color{white}\Huge Taylor-Proudman Theorem}}
+%------------------------------------------------
+\begin{frame}{Taylor-Proudman Theorem}
+
+\begin{itemize}
+	\item Consider the flow of a homogeneous flow that is in geostrophic balance.
+	\item This flow is only observed in laboratory experiments because stratification effects cannot be avoided in nature.
+	\item Imagine a tank with fluid that is steadily rotated at high angular speed $\Omega$.
+	\item At the same time, a solid body is moved slowly across the bottom of the tank.
+\end{itemize}
+\end{frame}
+%------------------------------------------------
+\begin{frame}{Taylor-Proudman Theorem}
+
+\begin{itemize}
+	\item The angular speed $\Omega$ is made large, and the solid body is moved slowly, so that Coriolis $\gg$ acceleration terms.
+	\item Acceleration terms must be negligible for geostrophic flow.
+	\item Away from the frictional effects of the boundaries, the balance in this experiment is geostrophic in the horizontal and hydrostatic in the vertical.
+	\begin{align}
+		-2\Omega v &= -\frac{1}{\rho}\frac{\partial p}{\partial x} \label{eq1}\\
+		2\Omega u &= -\frac{1}{\rho}\frac{\partial p}{\partial y}\label{eq2}\\
+		0 &= -\frac{1}{\rho}\frac{\partial p}{\partial z} -g\label{eq3}
+	\end{align}
+\end{itemize}
+\end{frame}
+
+%------------------------------------------------
+\begin{frame}{Taylor-Proudman Theorem}
+
+\begin{itemize}
+	\item Let's now define the Ekman number as the ratio of viscous to Coriolis forces (per unit volume):
+	$$E = \frac{\rho\nu U/L^2}{\rho fU} = \frac{\nu}{fL^2}$$
+	Based on the experimental setup, $E$ is very small.
+\end{itemize}
+\end{frame}
+
+%------------------------------------------------
+\begin{frame}{Taylor-Proudman Theorem}
+
+\begin{itemize}
+	\item First take $\partial/\partial y$ of Eq.~(\ref{eq1}):
+	$$-2\Omega \frac{\partial v}{\partial y} = -\frac{1}{\rho}\frac{\partial}{\partial y}\frac{\partial p}{\partial x} = -\frac{1}{\rho}\frac{\partial}{\partial x}\frac{\partial p}{\partial y}$$
+	\item Next take $\partial/\partial x$ of Eq.~(\ref{eq2}):
+	$$2\Omega \frac{\partial u}{\partial x} = -\frac{1}{\rho}\frac{\partial}{\partial x}\frac{\partial p}{\partial y}$$
+	\item Both equations are equal:
+	$$-2\Omega \frac{\partial v}{\partial y} = 2\Omega \frac{\partial u}{\partial x}\rightarrow 2\Omega\left(\frac{\partial u}{\partial x} + \frac{\partial v}{\partial y}\right) = 0$$
+	\item Recall that the incompressibility condition says $\vv{\nabla}\cdot\vv{U}=0$. Therefore, $\partial w/\partial z = 0$.
+\end{itemize}
+\end{frame}
+
+%------------------------------------------------
+\begin{frame}{Taylor-Proudman Theorem}
+
+\begin{itemize}
+	\item Next, differentiate Eqs.~(\ref{eq1}) and (\ref{eq2}) with respect to $z$:
+	\begin{align*}
+		-2\Omega \frac{\partial v}{\partial z} &= -\frac{1}{\rho}\frac{\partial}{\partial z}\frac{\partial p}{\partial x} = -\frac{1}{\rho}\frac{\partial}{\partial x}\frac{\partial p}{\partial z}\\
+		2\Omega \frac{\partial u}{\partial z} &= -\frac{1}{\rho}\frac{\partial}{\partial z}\frac{\partial p}{\partial y} = -\frac{1}{\rho}\frac{\partial}{\partial y}\frac{\partial p}{\partial z}
+	\end{align*}
+	\item Using Eq.~(\ref{eq3}):
+	$$
+		-2\Omega \frac{\partial v}{\partial z} = \frac{\partial g}{\partial x} = 0 \qquad 
+		2\Omega \frac{\partial u}{\partial z} = \frac{\partial g}{\partial y} = 0
+	$$
+	\item Both equations are equal:
+	$$2\Omega \frac{\partial v}{\partial z} = 2\Omega \frac{\partial u}{\partial z} \rightarrow \frac{\partial u}{\partial z} = \frac{\partial v}{\partial z} = 0$$
+	\item We already showed that $\partial w/\partial z=0$, so
+	$$\frac{\partial \vv{U}}{\partial z} = 0$$
+\end{itemize}
+\end{frame}
+
+%------------------------------------------------
+\begin{frame}{Taylor-Proudman Theorem}
+$$\frac{\partial \vv{U}}{\partial z} = 0$$
+\begin{itemize}
+	\item This outcome shows that the velocity vector does not vary in the direction of the $\vv{\Omega}$.
+	\item In other words, steady, slow motions in a rotating, inviscid, homogeneous fluid are two-dimensional.
+	\item This is the \textbf{Taylor-Proudman theorem}.
+	\item This theorem was derived by Proudman in 1916 and proved experimentally by Taylor soon thereafter.
+\end{itemize}
+\end{frame}
+
+%------------------------------------------------
+\begin{frame}{Taylor-Proudman Theorem}
+\setlength{\fboxsep}{0pt}
+\setlength{\fboxrule}{1pt}
+\begin{columns}[T]
+    \begin{column}{.5\textwidth}
+    	Taylor's Experiment:
+    	\begin{itemize}
+    		\item Dye was released at point A, above the cylinder.
+    		\item If non-rotating, the dye would pass over the cylinder.
+    		\item If rotating, the dye split at point S, as if blocked by an extension of the cylinder, and flowed around this imaginary column.
+    		\item This was called a \textbf{Taylor column}.
+    	\end{itemize}	
+    \end{column}
+    \begin{column}{.5\textwidth}
+    	\begin{minipage}[c][.65\textheight][c]{\linewidth}
+    		\includegraphics[width=\textwidth]{tp1}
+    		\centering \tiny{~\\via: Kundu et al. (2008)}
+    	\end{minipage}
+    \end{column}
+  \end{columns}
+\end{frame}
+%------------------------------------------------
+\begin{frame}{Taylor-Proudman Theorem}
+\setlength{\fboxsep}{0pt}
+\setlength{\fboxrule}{1pt}
+\begin{columns}[T]
+    \begin{column}{.5\textwidth}
+    	Taylor's Experiment:
+    	\begin{itemize}
+    		\item Dye released at point $B$ moved with the  cylinder.
+    		\item Conclusion: the flow outside of the vertical extension of the cylinder was the same as if the cylinder extended across the entire water depth.
+    		\item Conclusion: a column of water directly above the cylinder moved with it. 
+    	\end{itemize}	
+    \end{column}
+    \begin{column}{.5\textwidth}
+    	\begin{minipage}[c][.65\textheight][c]{\linewidth}
+    		\includegraphics[width=\textwidth]{tp1}
+    		\centering \tiny{~\\via: Kundu et al. (2008)}
+    	\end{minipage}
+    \end{column}
+  \end{columns}
+\end{frame}
+%------------------------------------------------
+\begin{frame}{Taylor-Proudman Theorem}
+\begin{itemize}
+	\item For the case of a rotating steady, inviscid, homogeneous fluid, Taylor's experiments showed that bodies moving parallel or perpendicular to the axis of rotation carry with them a Taylor column of fluid.
+	\item This Taylor column of fluid is oriented parallel to the axis of rotation.
+	\item This phenomenon is similar to horizontal solid-body blocking in the real (stratified) world, such as flow encountering a mountain.
+\end{itemize}
+\end{frame}
+%------------------------------------------------
+\section{Thermal Wind} %
+%------------------------------------------------
+\framecard[colorred]{{\color{white}\Huge Thermal Wind}}
+%------------------------------------------------
+\begin{frame}{Thermal Wind}
+
+\begin{itemize}
+	\item Recall that the geostrophic wind is:
+	$$\vv{V_g} = \frac{1}{\rho f}\hat k \times \vv{\nabla} p$$
+	\item We now define the \textbf{thermal wind} as:
+	$$\vv{V_T} = \vv{V_g}_{\text{, upper}} -  \vv{V_g}_{\text{, lower}}$$
+	\item The thermal wind is the vector difference between the geostrophic wind at some upper level and lower level.
+	\item The name is a misnomer because it is not a wind.
+\end{itemize}
+\end{frame}
+%------------------------------------------------
+\begin{frame}{Thermal Wind}
+
+\begin{itemize}
+	\item Why do we care about vertical changes in the geostrophic wind?
+	\item Vertical changes in $\vv{V_g}$ (and hence the thermal wind) are associated with horizontal changes in temperature.
+	\item Recall that the hydrostatic balance is given by:
+	$$\frac{\partial p}{\partial z} = -\rho g$$
+	we can apply the ideal gas law $p=\rho R T$ to get:
+	$$\frac{\partial p}{\partial z} = -\frac{pg}{RT}$$
+\end{itemize}
+\end{frame}
+%------------------------------------------------
+\begin{frame}{Thermal Wind}
+
+\begin{itemize}
+	\item Consider an infinitesimally small difference in height $\delta z$ between two adjacent pressure levels that are separated by the very small pressure difference $\delta p$:
+	$$\delta z = -\frac{RT}{pg}\delta p$$
+	\item Integrate to get the thickness between these two pressure levels spaced arbitrarily far apart:
+	$$z_2 - z_1 = -\frac{R}{g}\int^{p_2}_{p1} \frac{T}{p} dp$$
+	\item Thus, the thickness of a layer is proportional to the temperature in the layer.
+\end{itemize}
+\end{frame}
+%------------------------------------------------
+\begin{frame}{Thermal Wind}
+
+\begin{itemize}
+	\item As an example:
+	\begin{figure}
+		\includegraphics[width=0.75\textwidth]{thermal1}
+	\end{figure}
+	\item Another example with the same temperature field:
+	\begin{figure}
+		\includegraphics[width=0.75\textwidth]{thermal2}
+	\end{figure}
+	\item In both cases, the geostrophic wind changes with height because of horizontal temperature gradients.
+\end{itemize}
+\end{frame}
+%------------------------------------------------
+\begin{frame}{Thermal Wind}
+
+\begin{itemize}
+	\item The expression for the thermal wind is messy!
+	$$\vv{V_T} = \vv{V_g}_{\text{, upper}} -  \vv{V_g}_{\text{, lower}} = \frac{1}{\rho_{f \text{upper}}}\hat k \times \vv{\nabla} p_{\text{upper}} - \frac{1}{f \rho_{\text{upper}}}\hat k \times \vv{\nabla} p_{\text{lower}}$$
+	\item We can make life easier if we switch to isobaric coordinates by using
+	$$\frac{1}{\rho}\vv{\nabla}_z p = \vv{\nabla}_p \Phi$$
+	where $\Phi = gz$. We get a much nicer expression:
+	$$\vv{V_T} = \frac{1}{f} \times \vv{\nabla}_p \left(\Phi_{\text{upper}} - \Phi_{\text{lower}}\right)$$
+\end{itemize}
+\end{frame}
+%------------------------------------------------
+\begin{frame}{Thermal Wind}
+
+\begin{itemize}
+	\item Remember that the thermal wind is related to the vertical shear of the geostrophic wind:
+	\begin{align*}
+	\vv{V_g} &= \frac{1}{f} \hat k \times \vv{\nabla}_p \Phi \qquad{\text{take $\partial/\partial p$}}\\
+	\frac{\partial \vv{V_g}}{\partial p} &= \frac{1}{f} \hat k \times \vv{\nabla}_p \frac{\partial \Phi}{\partial p}
+	\end{align*}
+\hrule
+$$\frac{\partial p}{\partial z} = -\rho g \rightarrow \text{[$\div$ by $g$ and use $gz=\Phi$]} \rightarrow \frac{\partial p}{\partial \Phi} = -\rho$$
+$$\frac{\partial \Phi}{\partial p} = -\frac{1}{\rho} \rightarrow [\text{use ideal gas law}] \rightarrow \frac{\partial \Phi}{\partial p} = -\frac{RT}{p}$$
+We've now related $\partial \Phi/\partial p$ to $T$
+~\\~\\
+\hrule
+\end{itemize}
+\end{frame}
+%------------------------------------------------
+\begin{frame}{Thermal Wind}
+
+\begin{itemize}
+	\item Continuing:
+	\begin{align*}
+	\frac{\partial \vv{V_g}}{\partial p} &= \frac{1}{f} \hat k \times \vv{\nabla}_p \left(-\frac{RT}{p}\right)\quad \text{$p$=constant for isobaric level}\\
+	\frac{\partial \vv{V_g}}{\partial p} &= -\frac{R}{fp} \hat k \times \vv{\nabla}_p T\\
+	\Aboxed{-\frac{\partial \vv{V_g}}{\partial p} &= \frac{R}{fp} \hat k \times \vv{\nabla}_p T}
+	\end{align*}
+	This is the \textbf{thermal wind relation}, although it is really an equation for the vertical shear of the geostrophic wind.
+\end{itemize}
+\end{frame}
+%------------------------------------------------
+\begin{frame}{Thermal Wind}
+
+\begin{itemize}
+	\item Integrating the thermal wind relation will lead to the following general relationship in the Northern Hempisphere:
+	$$\vv{V_T} = (\text{positive values})\hat k \times \vv{\nabla}_p T$$
+	Thus, $\vv{V_T}$ is parallel to mean isotherms in a layer, with cold air to the left of $\vv{V_T}$.
+	\begin{figure}
+	\includegraphics[width=0.5\textwidth]{thermal3}	
+	\end{figure}
+	\item This describes the \textbf{Thermal Buys-Ballot Law}: ``with $\vv{V_T}$ to your back, cold air is to your left.''
+\end{itemize}
+\end{frame}
+%------------------------------------------------
+
+\end{document}
+

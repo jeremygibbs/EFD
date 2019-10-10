@@ -1,0 +1,437 @@
+\include{lecture_header}
+\title{Environmental Fluid Dynamics: Lecture 21}
+% colors
+\usepackage[loadonly]{enumitem}
+\newcommand{\ihat}{\boldsymbol{\hat{\imath}}}
+\newcommand{\jhat}{\boldsymbol{\hat{\jmath}}}
+\newcommand{\khat}{\boldsymbol{\hat{k}}}
+\definecolor{colororange}{HTML}{E65100} % orange
+\definecolor{colordgray}{HTML}{795548} % dark gray for note
+\definecolor{colorhgray}{HTML}{212121} % heavy dark gray for normal text
+\definecolor{colorgreen}{HTML}{009688} % green
+\definecolor{colorwhite}{HTML}{FFFFFF} % background white
+\definecolor{colorlgray}{HTML}{F5F3EE} % background light gray
+\definecolor{colorblue}{HTML}{0277BB} % blue
+\definecolor{colorred}{HTML}{CC0000} % red
+\newcommand{\fontsizeone}{1.9em}
+\usepackage{esvect}
+\setbeamertemplate{caption}{\raggedright\insertcaption\par}
+\newcommand{\framecard}[2][colorgreen]{
+  {\setbeamercolor{background canvas}{bg=#1}
+    \begin{frame}[plain]
+    \vfill
+    \begin{center}
+     {#2}
+    \end{center}
+    \vfill
+    \end{frame}
+  }
+}
+\begin{document}
+
+%----------------------------------------------------------------------------------------
+%	TITLE & TOC SLIDES
+%----------------------------------------------------------------------------------------
+
+\begin{frame} 
+  \titlepage
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{Overview}
+\tableofcontents
+\end{frame}
+
+%------------------------------------------------
+\section{Monin-Obukhov Similarity Theory} %
+%------------------------------------------------
+\framecard[colorred]{{\color{white}\Huge MOST}}
+%------------------------------------------------
+\subsection{Recap}
+%------------------------------------------------
+\begin{frame}{Monin-Obukhov Similarity Theory Recap}
+Recall from the previous lecture that we used Buckingham Pi theory to relate non-dimensionalized gradients to fluxes in the atmospheric surface layer.
+~\\~\\
+\textbf{MOST Assumptions}
+\begin{itemize}
+	\item flow is quasi-stationary and horizontally-homogeneous
+	\item turbulent fluxes are constant with height within the ASL.
+	\item molecular exchanges are small compared to turbulent exchanges.
+	\item rotational effects are neglected.
+	\item influence of surface roughness, boundary-layer depth, and geostrophic wind are accounted for by $\tau_w/\rho$.
+\end{itemize}
+\end{frame}
+%------------------------------------------------
+\begin{frame}{Monin-Obukhov Similarity Theory Recap}
+
+\textbf{Scaling variables}
+\begin{align*}
+	u_* &\simeq (-\overline{w^\prime u^\prime})^{1/2} \\
+	\theta_* &= -(\overline{w^\prime \theta^\prime})/u_*\\
+	\theta_{v*} &= -(\overline{w^\prime \theta_v^\prime})/u_*\\
+	q_* &= -(\overline{w^\prime q^\prime})/u_*\\
+	b_* &= -(\overline{w^\prime b^\prime})/u_*\\
+	L&=-u_*^3/(\kappa B_0) = u_*^2 / \kappa b_*
+	\end{align*}
+	where $L$ is the Obukhov Length, which describes the characteristic height of the sublayer of dynamic turbulence.
+\end{frame}
+
+%------------------------------------------------
+\begin{frame}{Monin-Obukhov Similarity Theory Recap}
+
+\textbf{Similarity Theory}
+\begin{itemize}
+	\item Similarity Theory showed that mean flow variables or average turbulence quantities, when normalized by $z, L, u_*, \theta_*$, etc., are functions of $\zeta = z/L$ only!
+	\item $\zeta$ helps determine the relative importance of buoyancy versus shear effects, which makes it akin to the Richardson number (Ri).
+	\begin{itemize}
+		\item $z \gg L$, buoyancy dominates
+		\item $z \ll L$, shear dominates
+	\end{itemize}
+\end{itemize}
+\end{frame}
+%------------------------------------------------
+\begin{frame}{Monin-Obukhov Similarity Theory Recap}
+
+\textbf{Similarity Theory}
+\begin{itemize}
+	\item We found these flux-profile relationships
+	\begin{align*}
+		\frac{\kappa z}{u_*} \frac{\partial \overline{u}}{\partial z} = \phi_m \left(\zeta \right) & \quad & \frac{\kappa z}{\theta_*} \frac{\partial \overline{\theta}}{\partial z} &= \phi_h \left(\zeta \right)\\
+		\frac{\kappa z}{\theta_{v*}} \frac{\partial \overline{\theta_v}}{\partial z} = \phi_v \left(\zeta \right) & \quad & \frac{\kappa z}{b_*} \frac{\partial \overline{b}}{\partial z} &= \phi_b \left(\zeta \right)\\
+			\frac{\kappa z}{q_{*}} \frac{\partial \overline{q}}{\partial z} = \phi_q \left(\zeta \right)
+		\end{align*}
+		\item Where $\phi$ terms are universal functions of $z/L$ and we often assume $\phi_h = \phi_v = \phi_b = \phi_q$.
+\end{itemize}
+\end{frame}
+%------------------------------------------------
+\begin{frame}{Monin-Obukhov Similarity Theory Recap}
+
+\textbf{Similarity Theory}
+\begin{itemize}
+	\item We chose the empirical forms of the similarity functions as derived by Dyer (1974).
+	\begin{align*}
+		\text{neutral} & \quad & \phi_m &= 1 & \quad  \phi_h &= 1\\
+		\text{unstable} & \quad & \phi_m &= \left(1 - 16\zeta\right)^{-1/4} & \quad  \phi_h &= \left(1 - 16\zeta\right)^{-1/2}\\
+		\text{stable} & \quad & \phi_m &= 1 + 5\zeta & \quad  \phi_h &= 1 + 5\zeta
+		\end{align*}
+		\item In totality, MOST allows us to determine turbulent fluxes from the mean gradients (or gradients from fluxes)
+\end{itemize}
+\end{frame}
+%------------------------------------------------
+\subsection{Relationships}
+%------------------------------------------------
+\begin{frame}{Monin-Obukhov Similarity Theory Relationships}
+
+\begin{itemize}
+	\item Let's relate these functions to Ri
+	\item The flux Richardson number and gradient Richardson number are, respectively:
+	$$\mathrm{Ri_f} = \frac{\overline{w^\prime b^\prime}}{\overline{w^\prime u^\prime}\partial \overline{u}/\partial z} \quad \text{and} \quad \mathrm{Ri} = \frac{\partial \overline{b}/\partial z}{(\partial \overline{u}/\partial z)^2}$$
+	\item Recall our scales: $-\overline{w^\prime u^\prime} = u_*^2$ and $-\overline{w^\prime b^\prime} = u_*b_*$.
+	\item And use our flux-profile relationships:
+	$$\frac{\kappa z}{u_*} \frac{\partial \overline{u}}{\partial z} = \phi_m \quad \text{and} \quad \frac{\kappa z}{b_*} \frac{\partial \overline{b}}{\partial z} = \phi_b$$
+	\item With the Obukhov Length
+	$$L=-u_*^3/(\kappa B_0) = u_*^2 / \kappa b_*$$
+\end{itemize}
+\end{frame}
+%------------------------------------------------
+\begin{frame}{Monin-Obukhov Similarity Theory Relationships}
+
+\begin{itemize}
+	\item Flux Richardson number
+	\begin{align*}
+	 \mathrm{Ri_f} &= \frac{\overline{w^\prime b^\prime}}{\overline{w^\prime u^\prime}\partial \overline{u}/\partial z} = \frac{- u_* b_*}{-u_*^2 \partial \overline{u}/\partial z} = \frac{u_* b_* \kappa z}{u_*^3 \phi_m} = \frac{b_* \kappa z}{u_*^2 \phi_m} = \frac{z}{L \phi_m}\\
+	 \Aboxed{\mathrm{Ri_f} &= \zeta \phi_m^{-1}}
+	 \end{align*}
+	 \item Gradient Richardson number
+	 \begin{align*}
+	 	\mathrm{Ri} &= \frac{\partial \overline{b}/\partial z}{(\partial \overline{u}/\partial z)^2} = \frac{\cfrac{b_*}{\kappa z}\phi_h}{\cfrac{u_*^2}{(\kappa z)^2} \phi_m^2} = \frac{\kappa z b_* \phi_h}{u_*^2 \phi_m^2} = \frac{z\phi_h}{L \phi_m^2}\\
+	 	\Aboxed{\mathrm{Ri} &= \zeta \frac{\phi_h}{\phi_m^{2}}}
+	 \end{align*}
+\end{itemize}
+\end{frame}
+%------------------------------------------------
+\begin{frame}{Monin-Obukhov Similarity Theory Relationships}
+
+\begin{itemize}
+	\item Let's use K-theory to derive expressions that relate similarity functions to the turbulent Prandtl and Schmidt numbers.
+	\begin{align*}
+		-K_m\frac{\partial \overline{u}}{\partial z} &= \overline{w^\prime u^\prime} &\quad  -K_h\frac{\partial \overline{b}}{\partial z} &= \overline{w^\prime b^\prime}\\
+		K_m\frac{\partial \overline{u}}{\partial z} &= u_*^2 &\quad  K_h\frac{\partial \overline{b}}{\partial z} &= u_*b\\
+		K_m &= \frac{u_*^2}{\cfrac{u_*}{\kappa z}\phi_m} &\quad K_h &= \frac{u_*b_*}{\cfrac{b_*}{\kappa z}\phi_h}\\
+		\Aboxed{K_m &= \frac{\kappa z u_*}{\phi_m}} &\quad \Aboxed{K_h &= \frac{\kappa z u_*}{\phi_h}}
+	\end{align*}
+\end{itemize}
+\end{frame}
+%------------------------------------------------
+\begin{frame}{Monin-Obukhov Similarity Theory Relationships}
+
+\begin{itemize}
+	\item The Prandtl and Schmidt numbers are defined as:
+	$$\mathrm{Pr} = \nu/\nu_h \quad \text{and} \quad \mathrm{Sc} = \nu/\nu_q$$
+	\item Analogously, we define their turbulent versions:
+	$$\mathrm{Pr_t} = K_m/K_h \quad \text{and} \quad \mathrm{Sc_t} = K_m/K_q$$
+	\item Thus,
+	\begin{align*}
+	\mathrm{Pr_t} = \frac{\cfrac{\kappa z u_*}{\phi_m}}{\cfrac{\kappa z u_*}{\phi_h}} = \frac{\phi_h}{\phi_m} &\qquad \mathrm{Sc_t} = \frac{\cfrac{\kappa z u_*}{\phi_m}}{\cfrac{\kappa z u_*}{\phi_q}} = \frac{\phi_q}{\phi_m}
+	\end{align*}
+	\item Recall, however, that we assume $\phi_q \approx \phi_h$, thus
+	$$\boxed{\mathrm{Pr_t} = \mathrm{Sc_t} = \frac{\phi_h}{\phi_m}}$$
+\end{itemize}
+\end{frame}
+%------------------------------------------------
+\begin{frame}{Monin-Obukhov Similarity Theory Relationships}
+
+\begin{itemize}
+	\item Let's relate $\mathrm{Pr_t}$ and $\mathrm{Sc_t}$ to $\mathrm{Ri_f}$ and $\mathrm{Ri}$ :
+	$$\mathrm{Ri} = \zeta \frac{\phi_h}{\phi_m^2} = \mathrm{Ri_f}\frac{\phi_h}{\phi_m}=\mathrm{Ri_f}\mathrm{Pr_t}=\mathrm{Ri_f}\mathrm{Sc_t}$$
+	or
+	$$\boxed{\mathrm{Pr_t} = \mathrm{Sc_t} = \frac{\mathrm{Ri}}{\mathrm{Ri_f}}}$$
+\end{itemize}
+\end{frame}
+%------------------------------------------------
+\begin{frame}{Monin-Obukhov Similarity Theory Relationships}
+
+\begin{itemize}
+	\item Consider \textit{unstable} conditions using Dyer's functions
+	\begin{align*}
+	& \phi_m = \left(1 - 16\zeta\right)^{-1/4} & \quad  \phi_h = \left(1 - 16\zeta\right)^{-1/2}
+	\end{align*}
+	\begin{align*}
+		\mathrm{Ri} &= \zeta \frac{\phi_h}{\phi_m^2} = \zeta \leq 0\\
+		\mathrm{Ri_f} &= \zeta \phi_m^{-1} = \zeta(1-16\zeta)^{1/4} \leq 0
+	\end{align*}
+\end{itemize}
+\end{frame}
+%------------------------------------------------
+\begin{frame}{Monin-Obukhov Similarity Theory Relationships}
+
+\begin{itemize}
+	\item Consider \textit{stable} conditions using Dyer's functions
+	\begin{align*}
+	& \phi_m = 1 + 5\zeta & \quad  \phi_h = 1 + 5\zeta
+	\end{align*}
+	\begin{align*}
+		\mathrm{Ri} &= \zeta \frac{\phi_h}{\phi_m^2} = \zeta \phi_m^{-1} = \mathrm{Ri_f} = \frac{\zeta}{5\zeta + 1} \geq 0 \\
+	\end{align*}
+	\item We can rearrange as
+	$$\zeta = \frac{\mathrm{Ri}}{1 -5\mathrm{Ri}} \quad 0\leq \mathrm{Ri} < 0.2$$
+	\item Note that for $\mathrm{Ri} = 0.2$, $\zeta \rightarrow \infty\ (L\rightarrow 0)$. This means that there is no turbulence beyond this value. Thus, the Dyer functions point to $\mathrm{Ri_c} = 0.2$.
+\end{itemize}
+\end{frame}
+%------------------------------------------------
+\subsection{Surface-Layer Logarithmic Wind Profile}
+\begin{frame}{Surface-Layer Logarithmic Wind Profile}
+
+\begin{itemize}
+	\item Consider the case of neutral stratification ($\phi_m = 1$)
+	\begin{align*}
+		\frac{\kappa z}{u_*} \frac{\partial \overline{u}}{\partial z} &= 1\\
+		\frac{\partial \overline{u}}{\partial z} &= \frac{u_*}{\kappa z} \quad \text{now integrate}\\
+		\Aboxed{u &= \frac{u_*}{\kappa}\ln{z} + C}
+	\end{align*}
+	where $C$ is a constant of integration.
+	\item This describes the famous logarithmic wind profile in the atmospheric surface layer.
+	\item Recall that wind should adhere to no-slip conditions ($u=0$) at the surface. However, notice that there is discontinuity at $z=0$. This points to the fact that the flow becomes laminar for very small $z$ and brings about the concept of surface roughness.
+\end{itemize}
+\end{frame}
+%------------------------------------------------
+\subsection{Aerodynamically Smooth and Rough Surfaces}
+\begin{frame}{Aerodynamically Smooth and Rough Surfaces}
+
+\begin{itemize}
+	\item If we take $u_*$ as the velocity scale and $\delta_\ell$ as the length scale of turbulence in the ASL, then the Reynolds number criterion for laminarization of the flow close to the surface (wall) is
+	$$\mathrm{Re_\delta} = \frac{u_* \delta_\ell}{\nu} \sim 1$$
+	where $\nu$ is kinematic viscosity
+	\item Thus, turbulence does not exist at distances from the wall of the order and less than $\delta_\ell \sim \nu/u_*$ (note: the oft-used viscous wall units are defined as $z^+ = z/\delta_\ell$ and $u^+ = \overline{u}/u_*$)
+	\item Experimental data suggest that $\delta_\ell \sim 5\ \nu/u_*$, where the layer defined with this depth is called the \textit{viscous sublayer}. 
+\end{itemize}
+\end{frame}
+%------------------------------------------------
+\begin{frame}{Aerodynamically Smooth and Rough Surfaces}
+
+\textbf{Aerodynamically Smooth}
+\begin{itemize}
+	\item If roughness elements of characteristic size $z_r$ are deployed in the viscous sublayer and $z_r \ll \delta_l$, then the surface is \textit{aerodynamically smooth}.
+	\item Lab data shows that surfaces are smooth for $z_r \leq 5 \nu/u_*$.
+	\item For the atmosphere, this corresponds to $z_r \lesssim 1\ \milli\metre$. 
+	\item However, most elements in the ASL are larger than $1\ \milli\metre$.
+	\item Thus, most surfaces in the ASL are aerodynamically rough (exceptions: ice, mudflats, snow, water under light wind).
+\end{itemize}
+
+\textbf{Aerodynamically Rough}
+\begin{itemize}
+	\item The surface is \textit{aerodynamically rough} for $z_r \gg \delta_l$.
+	\item Lab data shows that surfaces are rough for $z_r \geq 75 \nu/u_*$.
+\end{itemize}
+\end{frame}
+%------------------------------------------------
+\begin{frame}{Aerodynamic Surface Roughness Length}
+
+\begin{itemize}
+	\item In the case of a smooth surface, a turbulence flow regime represented by a logarithmic profile us possible at a height above $\nu/u_*$ (well above surface roughness elements).
+	\item In the case of a rough surface, the flow is already turbulent in the near vicinity of surface roughness elements. Measurements show that $u=0$ at some level close to $z_r$ (actually just below).
+	\item Let's introduce the idea of the surface roughness length.
+\end{itemize}
+\end{frame}
+%------------------------------------------------
+\begin{frame}{Aerodynamic Surface Roughness Length}
+
+\begin{itemize}
+	\item Recall the generic log-law profile:
+	$$u = \frac{u_*}{\kappa}\ln{z} + C$$
+	\item We will introduce a reference level $z_0$ where $u=0$, defined through
+	$$C = -\left(\frac{u_*}{\kappa}\right)\ln{z_0}$$
+	\item This leads to the neutral log-law profile
+	$$\boxed{u = \frac{u_*}{\kappa}\ln{\frac{z}{z_0}}}$$
+	where $z_0$ is called the aerodynamic surface roughness length (or surface roughness length) for momentum.
+\end{itemize}
+\end{frame}
+%------------------------------------------------
+\begin{frame}{Mean Flow Above a Smooth Surface}
+
+\begin{itemize}
+	\item For smooth surfaces, $z_0$ defines the lower asymptotic limit of the logarithmic wind profile, below which the mean flow velocity is no longer a characteristic of turbulence.
+	\item We can rearrange the neutral log-law expression and scale height by $\delta_\ell = \nu/u_*$
+	\begin{align*}
+		\frac{u}{u_*} &= \frac{1}{\kappa} \ln{\frac{z}{\nu / u_*}} + \frac{1}{\kappa} \ln{\frac{\nu / u_*}{z_0}}\\
+		\frac{u}{u_*} &= \frac{1}{\kappa}  \ln{\frac{z}{\nu / u_*}} + C_s
+	\end{align*}
+	where $$C_s = \frac{1}{\kappa} \ln{\frac{\nu / u_*}{z_0}}.$$
+	Lab data suggest that $C_s \approx 5$
+\end{itemize}
+\end{frame}
+%------------------------------------------------
+\begin{frame}{Mean Flow Above a Smooth Surface}
+
+\begin{itemize}
+	\item The final form is given by
+	$$\boxed{\frac{u}{u_*} = \frac{1}{\kappa}  \ln{\frac{zu_*}{\nu}} + 5} \quad \text{or} \quad \boxed{u^+ = \frac{1}{\kappa}  \ln{z^+} + 5}$$
+	\item We can also approximate $z_0$:
+	\begin{align*}
+		C_s &= \frac{1}{\kappa} \ln{\frac{\nu / u_*}{z_0}}\\
+		\frac{\nu / u_*}{z_0} &= e^{\kappa C_s}\\
+		\Aboxed{z_0 &= e^{-\kappa C_s} \frac{\nu}{u_*} \approx 0.1 \frac{\nu}{u_*}}
+	\end{align*}
+	Or in other words, the surface roughness length for a smooth surface is approximately 10\% of the viscous sublayer depth.
+\end{itemize}
+\end{frame}
+%------------------------------------------------
+\begin{frame}{Mean Flow Above a Smooth Surface}
+
+\begin{itemize}
+	\item The final form is given by
+	$$\boxed{\frac{u}{u_*} = \frac{1}{\kappa}  \ln{\frac{zu_*}{\nu}} + 5} \quad \text{or} \quad \boxed{u^+ = \frac{1}{\kappa}  \ln{z^+} + 5}$$
+	\item We can also approximate $z_0$:
+	\begin{align*}
+		C_s &= \frac{1}{\kappa} \ln{\frac{\nu / u_*}{z_0}}\\
+		\frac{\nu / u_*}{z_0} &= e^{\kappa C_s}\\
+		\Aboxed{z_0 &= e^{-\kappa C_s} \frac{\nu}{u_*} \approx 0.1 \frac{\nu}{u_*}}
+	\end{align*}
+	Or in other words, the surface roughness length for a smooth surface is approximately 10\% of the viscous sublayer depth.
+\end{itemize}
+\end{frame}
+%------------------------------------------------
+\begin{frame}{Mean Flow Above a Rough Surface}
+
+\begin{itemize}
+	\item For rough surfaces, $z_0$ is directly interpreted as the level where mean flow velocity vanishes. So,
+	$$u = \frac{u_*}{\kappa}\ln{\frac{z}{z_0}} \quad \text{where } u=0 \text{ at } z=z_0 $$
+	\item In the real world, $z_0$ is a complex function of surface geometry, involving $z_r$ as one of many parameters.
+	\item Generally, $z_0$ increases with increasing $z_r$.
+\end{itemize}
+\end{frame}
+%------------------------------------------------
+\begin{frame}{Mean Flow Above a Rough Surface}
+
+\begin{itemize}
+	\item In reality, there is no real consistent average velocity observed in a flow down to $z_0$ (below $z_r$).
+	\item The velocity field obeys the log-law only at some distance $z\gg z_0$ above the surface.
+	\item In this sense, $z_0$ is also the asymptotic limit of the logarithmic velocity profile.
+	\item In order to make more applicable, we introduce the concept of the displacement height $d$.
+	$$u = \frac{u_*}{\kappa}\ln{\frac{z-d}{z_0}} \quad \text{where } u=0 \text{ at } z=z_0+d$$
+	\item Far above the displaced height ($z\gg d$), $d$ is ignored
+	$$u = \frac{u_*}{\kappa}\ln{\frac{z-d}{z_0}} = u = \frac{u_*}{\kappa}\ln{\frac{z/d-1}{z_0/d}} \approx u = \frac{u_*}{\kappa}\ln{\frac{z}{z_0}}$$
+\end{itemize}
+\end{frame}
+%------------------------------------------------
+\begin{frame}{$\mathbf{z_0}$ Parameterizations for Sand, Snow, Water}
+
+\textbf{Snow, Sand}
+\begin{itemize}
+	\item $z_0$ for snow/sand increases with increasing wind speed.
+	\item As wind speed increases, the material moves more actively and transports more effectively away from the surface.
+	\item Empirical expression:
+	$$z_0 = \frac{\alpha_s u_*^2}{g}$$
+	where $\alpha_s = 0.016$ and $u_* > u_{*t}$. Here, $u_{*t} \approx 0.12\ \metre\ \reciprocal\second$ is a threshold frictions velocity. In the rough wall case, $z_0$ may be considered constant for snow/sand when $u_*<u_{*t}$.
+\end{itemize}
+\end{frame}
+%------------------------------------------------
+\begin{frame}{$\mathbf{z_0}$ Parameterizations for Sand, Snow, Water}
+
+\textbf{Water}
+\begin{itemize}
+	\item Wind generates waves on a water's surface.
+	\item Waves occur within a broad range of geometric parameters (heights/lengths).
+	\item Waves are generated and grow due to many physical mechanism, such as wave age, fetch, depth of the water body, and wind velocity (in terms of $u_*$).
+	\item Roughness of wavy water is primarily determined by the steepest waves, rather than the longest.
+\end{itemize}
+\end{frame}
+%------------------------------------------------
+\begin{frame}{$\mathbf{z_0}$ Parameterizations for Sand, Snow, Water}
+
+\textbf{Water}
+\begin{itemize}
+	\item The shortest waves are capillary waves, with amplitudes/lengths $\mathcal{O}(1\ \milli\metre$).
+	\item Water is typically considered aerodynamically smooth if $\mathrm{Re_*} \ll 1$, so if we estimate $\mathrm{Re_*} = z_0 u_* / \nu \approx 0.1$, then $z_0 = m_s\left(\nu/u_*\right)$, where $m_s \approx 0.1$.
+	\item Water is fully rough when $\mathrm{Re_*} \gg 1$. In this case we use $z_0 = \alpha_c u_*^2/g$, where $\alpha_c$ is the Charnock ``constant'', which ranges from $0.01-0.035$ (typically $0.014-0.019)$.
+\end{itemize}
+\end{frame}
+%------------------------------------------------
+\begin{frame}{$\mathbf{z_0}$ for Temperature and Moisture}
+
+\begin{itemize}
+	\item Boundary conditions for temperature and moisture at the underlying surface are formulated based on notions of their roughness lengths.
+	$$\theta = \theta_s \text{ at } z_{0\theta} \quad \text{and} \quad q = q_s \text{ at } z_{0q}$$
+	where $z_{0\theta}$ and $z_{0q}$ are interpreted as the levels where $\theta$ and $q$ reach their surface values $\theta_s$ and $q_s$, respectively.
+\end{itemize}
+\end{frame}
+%------------------------------------------------
+\begin{frame}{$\mathbf{z_0}$ for Temperature and Moisture}
+
+\begin{itemize}
+	\item The physical nature of transport mechanisms for momentum, heat, and moisture differ significantly.
+	\item e.g., pressure fluctuations are important to the transport of momentum, bu do not directly affect heat and moisture.
+	\item Thus, there is no physical basis to expect that $z_0$ and $z_{0\theta},z_{0q}$ should be the same, or even close.
+	\item There are experimental indications of similarity between heat and moisture, so $z_{0\theta} \sim z_{0q}$.
+\end{itemize}
+\end{frame}
+%------------------------------------------------
+\begin{frame}{Parameterizing the Relationships between $\mathbf{z_0}$ and $\mathbf{z_{0\theta},z_{0q}}$}
+
+\begin{itemize}
+	\item The number of roughness parameters needed is reduced by parameterizing relationships between them.
+	\item Commonly, $z_0/z_{0\theta}$ and $z_0/z_{0q}$ are parameterized based on the assumption that $\theta$ and $q$ are logarithmic close to the surface.
+	$$\theta(z) = \theta_s + \frac{\theta_*}{\kappa} \ln{\frac{z}{z_{0\theta}}} \quad \text{and} \quad q(z) =q_s + \frac{q_*}{\kappa} \ln{\frac{z}{z_{0q}}}$$
+	thus,
+	$$\delta \theta = \theta(z_0) - \theta_s = \frac{\theta_*}{\kappa} \ln{\frac{z}{z_{0\theta}}} \quad \text{and} \quad \delta q = q(z_0) - q_s = \frac{q_*}{\kappa} \ln{\frac{z}{z_{0q}}}$$
+	\item Experimental data suggest that $\ln(z_0/z_{0\theta})$ and $\ln(z_0/z_{0q})$ may be functions of $\mathrm{Re_*} = z_0 u_*/\nu$ for rough surfaces.
+\end{itemize}
+\end{frame}
+%------------------------------------------------
+\begin{frame}{Parameterizing the Relationships between $\mathbf{z_0}$ and $\mathbf{z_{0\theta},z_{0q}}$}
+
+\begin{itemize}
+	\item \textbf{Rough}
+	$$\frac{1}{\kappa}\ln{\frac{z_0}{z_{0\theta}}} = 6.2\ \mathrm{Re_*}^{1/4} - 5 \quad \text{and} \quad \frac{1}{\kappa}\ln{\frac{z_0}{z_{0q}}} = 5.7\ \mathrm{Re_*}^{1/4} - 5$$
+	\item \textbf{Smooth}
+	$$\frac{1}{\kappa}\ln{\frac{z_0}{z_{0\theta}}} = 13.6\ \mathrm{Pr}^{2/3} - 12 \quad \text{and} \quad \frac{1}{\kappa}\ln{\frac{z_0}{z_{0q}}} = 13.6\ \mathrm{Sc}^{2/3} - 12$$
+	\item Typical ASL values for $\mathrm{Pr}$ and $\mathrm{Sc}$ are $0.71$ and $0.6$, respectively, for smooth surfaces.
+	\item Thus, $z_0/z_{0\theta} = 0.5$ and $z_0/z_{0q} = 0.3$ (i.e., the roughness lengths for heat and moisture are typically larger than that for momentum).
+\end{itemize}
+\end{frame}
+%------------------------------------------------
+
+\end{document}
+

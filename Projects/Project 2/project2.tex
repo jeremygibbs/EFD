@@ -1,0 +1,90 @@
+%%% Template originaly created by Karol Kozioł (mail@karol-koziol.net) and modified for ShareLaTeX use
+
+\documentclass[11pt]{article}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{float}
+\usepackage{tgtermes}
+%\usepackage{natbib}
+%\usepackage[subnum]{cases}
+\usepackage[super]{nth}
+%\bibpunct{(}{)}{;}{a}{}{,}
+\usepackage{amsmath,amssymb}
+\usepackage{enumerate}
+\usepackage{multicol}
+\usepackage{tikz}
+\usepackage[amssymb]{SIunits}
+\usepackage{rotating}
+\usepackage{enumitem}
+\usepackage{geometry}
+\geometry{total={8.5in,11in},
+left=1in,right=1in,%
+bindingoffset=0mm, top=1in,bottom=1in}
+\usepackage[super]{nth}
+\usepackage[
+pdftitle={Project 2}, 
+pdfauthor={Jeremy Gibbs, University of Utah},
+colorlinks=true,linkcolor=blue,urlcolor=blue,citecolor=blue,bookmarks=true,
+bookmarksopenlevel=2]{hyperref}
+
+\linespread{1.1}
+\setlength{\parskip}{1em}
+\setlength{\parindent}{0pt}
+\newcommand{\linia}{\rule{\linewidth}{0.5pt}}
+
+\makeatletter
+\renewcommand{\maketitle}{
+\begin{center}
+\vspace{2ex}
+{\huge \textsc{\@title}}
+\vspace{1ex}
+\\
+\linia\\
+ME EN 7710 \hfill Project \#2 \hfill Due May 1\\
+Atmospheric Surface Layer Turbulence Analysis
+\vspace{4ex}
+\end{center}
+}
+\makeatother
+%%%
+
+% custom footers and headers
+\usepackage{fancyhdr,lastpage}
+\pagestyle{fancy}
+\lhead{}
+\chead{}
+\rhead{}
+%\lfoot{Assignment \textnumero{} 5}
+\cfoot{}
+\rfoot{Page \thepage~/~\pageref*{LastPage}}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+%
+
+%%%----------%%%----------%%%----------%%%----------%%%
+
+\begin{document}
+\bibliographystyle{abbrv}
+\title{Environmental Fluid Dynamics}
+
+\maketitle
+\vspace{-20pt}
+\paragraph{\large Overview}~\\~\\
+You will investigate various aspects of turbulence using data from the MATERHORN field campaign conducted at Dugway Proving Ground. Information on the campaign can be found at: \href{http://www3.nd.edu/~dynamics/materhorn/}{http://www3.nd.edu/~dynamics/materhorn/}. Additional project resources are posted on Canvas and the \href{http://gibbs.science/efd}{course website}. Each group should obtain the sonic anemometer/thermometer data directly from me. The purpose of this project is to understand the physics of turbulent flow occurring at the measurement site. You will need to come up with a general scientific objective and hypothesis that you intend to test, present on, and write-up. For example, a group may choose as an objective: ``To better understand the effect of atmospheric stability on turbulence for a canyon outflow'' and a hypothesis that might be tested could be: ``Night-time turbulence is enhanced by the formation of surface level jet.''You must first select a time period for analysis. You may select the entire day for simple statistics and tethered balloon analysis, but you will want to focus on a shorter time period for the turbulence analysis that is required and outlined below. You may work in groups of two or three. Please select a project topic as soon as possible and obtain my approval. 
+
+Oral presentations: \textbf{Monday, May 1 from 10:30a-12:30p}. Final report due: \textbf{Monday, May 1 at 5:00p}.
+
+\paragraph{\large Assignment}~\\~\\Using the Sonic Anemometer data, please perform the following analysis:
+\vspace{-10pt}
+\begin{enumerate}
+	\item \textbf{Simple Time Averaging:} calculate (a) 30-minute averages of $u$, $v$, $w$, and $T$, as well as (b) $\overline{ws}$, $\overline{wd}$, $\sigma_u$, $\sigma_v$, $\sigma_w$, $\overline{w^\prime T_s^\prime}$, $u_*$, $H_s$, $tke$, $L$, and $w_*$ (if appropriate), where $\overline{ws}$ and $\overline{wd}$ are average wind speed and direction, respectively. Describe the stability during the analyzed period.
+	\item \textbf{Probability Distributions:} For a representative 30-minute averaging period, generate a CDF and PDF for $u$, $v$, $w$, and $T$ and report the skewness and kurtosis.
+	\item \textbf{Autocorrelation:} Calculate the autocorrelation of at least one 30-minute period. What does this indicate?
+	\item \textbf{Dissipation: } Using Taylor's frozen turbulence hypothesis, calculate the dissipation rate of turbulent kinetic energy for several 30-minute periods. Calculate the Kolmogorov length scale.
+	\item \textbf{Turbulence Spectra:} For at least one 30-minute averaging period, calculate the following turbulent energy spectra: $S_{uu}$, $S_{vv}$, $S_{ww}$, $S_{TT}$, as well as the following cospectra: $S_{uw}$, $S_{vw}$, $S_{wt}$. What do these spectra indicate about the analyzed boundary layer? Is there an inertial subrange?
+\end{enumerate}
+
+\end{document}
